@@ -1,7 +1,19 @@
+import React from "react";
 
-const HeaderTodo = () => {
-    return (
-        <h1> To do App</h1>
-    )
+class HeaderTodo extends React.PureComponent {
+    render() {
+        console.log('header component render');
+        return (
+            <h1> To do App</h1>
+        )
+    }
 }
 export default HeaderTodo;
+
+// const HeaderTodo = () => {
+//     console.log('header component render');
+//     return (
+//         <h1> To do App</h1>
+//     )
+// }
+// export default React.memo(HeaderTodo);

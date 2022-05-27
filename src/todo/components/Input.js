@@ -1,5 +1,7 @@
+import React from 'react';
 
 const InputTodo = (props) => {
+    console.log('input render');
     return (
         <input
             value={props.val}
@@ -8,4 +10,4 @@ const InputTodo = (props) => {
         />
     )
 }
-export default InputTodo;
+export default React.memo(InputTodo);
