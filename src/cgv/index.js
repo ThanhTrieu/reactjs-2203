@@ -1,10 +1,10 @@
 import React from 'react';
-import UpComingPage from './pages/coming/index';
+import RoutingMovie from './routes/web';
 import './index.css';
 
 const MoviesApp = () => {
     return (
-        <UpComingPage/>
+        <RoutingMovie/>
     )
 }
 export default React.memo(MoviesApp);
