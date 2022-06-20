@@ -1,5 +1,12 @@
 import axios from 'axios';
 
+const getDataMovieById = async (id, lang = 'en-US') => {
+    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=0aecc06bb4fadb06b5f071fef0c2ce6d&language=${lang}&append_to_response=videos,images&include_image_language=en,null`;
+    const response = await axios.get(url);
+    const result = response.status === 200 ? response.data : {};
+    return result;
+}
+
 const getDataUpcomingMovies = async (page = 1, lang = 'en-US') => {
     // lay ra cac bo phim tu ngay hien cho den 3 thang sau
     let date = new Date();
@@ -28,5 +35,6 @@ const getDataUpcomingMovies = async (page = 1, lang = 'en-US') => {
     return result;
 }
 export const apiMovies = {
-    getDataUpcomingMovies
+    getDataUpcomingMovies,
+    getDataMovieById
 }

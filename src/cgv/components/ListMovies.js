@@ -1,5 +1,7 @@
 import React from 'react';
 import { Row, Col, Card } from 'antd';
+import { Link } from 'react-router-dom';
+import slugify from 'react-slugify';
 
 const { Meta } = Card;
 
@@ -17,16 +19,18 @@ const ListMovies = ({ listMovies }) => {
         <Row style={{margin: '20px 0px'}}>
             {listMovies.map((item, index) => (
                 <Col span={6} key={index}>
-                    <Card
-                        hoverable
-                        style={{
-                            marginRight: '5px',
-                            marginBottom: '10px'
-                        }}
-                        cover={<img alt={item.original_title} src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} />}
-                    >
-                        <Meta title={item.title} />
-                    </Card>
+                    <Link to={`/${slugify(item.title)}-${item.id}`}>
+                        <Card
+                            hoverable
+                            style={{
+                                marginRight: '5px',
+                                marginBottom: '10px'
+                            }}
+                            cover={<img alt={item.original_title} src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} />}
+                        >
+                            <Meta title={item.title} />
+                        </Card>
+                    </Link>
                 </Col>
             ) )}
         </Row>

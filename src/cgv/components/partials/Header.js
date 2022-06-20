@@ -10,7 +10,8 @@ const HeaderMovies = () => {
     const items = [
         {label: <Link to="/">Popularity</Link>, key: '/'}, // popularity
         {label: <Link to="/up-coming">Up coming</Link>, key: '/up-coming'}, // up coming
-        {label: <Link to="/search">Search</Link>, key: '/search'} // search
+        {label: <Link to="/search">Search</Link>, key: '/search'}, // search
+        {label: <Link to="/login">Login</Link>, key: '/login'}
     ];
     return (
         <Header>
