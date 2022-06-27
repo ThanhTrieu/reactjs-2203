@@ -4,6 +4,8 @@ import {
     Routes,
     Route,
 } from "react-router-dom";
+import { AuthProvider } from '../hooks/useAuth';
+import ProtectedLayout from '../components/ProtectedLayout';
 
 import NotFoundPage from '../pages/errors/404';
 
@@ -16,17 +18,23 @@ import LoginPage from '../pages/login/index';
 const RouteMovies = () => {
     return (
         <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<PopularPage/>} />
-                <Route path="/up-coming" element={<UpComingPage/>} />
-                <Route path="/search" element={<SearchPage/>} />
-                {/* localhost:3000/spider-man-no-way-home-12333 */}
-                {/* localhost:3000/:slug-:id */}
-                <Route path="/:slug-:id" element={<DetailPage/>} />
-                <Route path="/login" element={<LoginPage/>} />
-                {/* not found request */}
-                <Route path="*" element={<NotFoundPage/>} />
-            </Routes>
+            <AuthProvider>
+                <Routes>
+                    <Route path="/" element={<PopularPage/>} />
+                    <Route path="/up-coming" element={
+                        <ProtectedLayout>
+                            <UpComingPage/>
+                        </ProtectedLayout>
+                    } />
+                    <Route path="/search" element={<SearchPage/>} />
+                    {/* localhost:3000/spider-man-no-way-home-12333 */}
+                    {/* localhost:3000/:slug-:id */}
+                    <Route path="/:slug-:id" element={<DetailPage/>} />
+                    <Route path="/login" element={<LoginPage/>} />
+                    {/* not found request */}
+                    <Route path="*" element={<NotFoundPage/>} />
+                </Routes>
+            </AuthProvider>
         </BrowserRouter>
     )
 }

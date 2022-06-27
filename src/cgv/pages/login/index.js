@@ -1,10 +1,13 @@
 import React from 'react';
 import { Row, Col, Button, Form, Input } from 'antd';
+import { useAuth } from '../../hooks/useAuth';
 
 const LoginMovies = () => {
+    const { login } = useAuth();
 
     const onFinish = (values) => {
         console.log('Success:', values);
+        login(values);
     };
     
     const onFinishFailed = (errorInfo) => {

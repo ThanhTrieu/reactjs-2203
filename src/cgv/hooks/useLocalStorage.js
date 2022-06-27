@@ -14,7 +14,18 @@ export const useLocalStorage = (keyName, defaultValue) => {
                 return defaultValue;
             }
         } catch (err) {
-
+            console.log(err);
+            return defaultValue;
         }
     });
+    // xu ly cho setStoreValue
+    const setValue = (newValue) => {
+        try {
+            window.localStorage.setItem(keyName, JSON.stringify(newValue));
+        } catch (err) {
+            console.log(err);
+        }
+        setStoreValue(newValue);
+    }
+    return [storeValue, setValue];
 }
