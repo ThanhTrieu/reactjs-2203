@@ -4,8 +4,8 @@
 // 2: action cua middle redux saga (nhan vao action(1) va tra ve cac action khac va cac action do se dc dispatch vao store)
 
 // action cua user tac dong vao he thong
-export const SEARCH_DATA_REQUEST = Symbol('SEARCH_DATA_REQUEST');
-
+//export const SEARCH_DATA_REQUEST = Symbol('SEARCH_DATA_REQUEST');
+export const SEARCH_DATA_REQUEST = 'SEARCH_DATA_REQUEST';
 
 // action cua saga(nhan action SEARCH_DATA_REQUEST)
 export const START_SEARCH_DATA = Symbol('START_SEARCH_DATA');

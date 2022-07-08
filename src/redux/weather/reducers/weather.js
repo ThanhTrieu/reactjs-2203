@@ -26,7 +26,8 @@ export const weatherReducer = (state = initialState, action) => {
         case typeActions.GET_DATA_WEATHER_FAIL:
             return {
                 ...state,
-                error: action.error
+                error: action.error,
+                weathers: {}
             }
         default:
             return state;
