@@ -1,14 +1,18 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Layout, Menu } from 'antd';
 import { Link, useLocation } from "react-router-dom";
+import { countDataCart } from '../../redux/selectors/CartSelector';
 
 const { Header } = Layout;
 
 const HeaderComponent = () => {
+    const countCart = useSelector(countDataCart);
+
     const { pathname } = useLocation();
     const items = [
         {label: <Link to="/">Home</Link>, key: '/'},
-        {label: <Link to="/cart">Cart (3)</Link>, key: '/cart'},
+        {label: <Link to="/cart">Cart ({countCart})</Link>, key: '/cart'},
     ];
     return (
         <Header>

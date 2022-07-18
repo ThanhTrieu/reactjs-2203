@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-    BrowserRouter,
     Routes,
     Route,
 } from "react-router-dom";
@@ -16,14 +15,12 @@ const CartPage = loadable(() => import('../pages/cart/index'));
 
 const RouteApp = () => {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<HomePage/>} />
-                <Route path="/cart" element={<CartPage/>} />
-                {/* not found request */}
-                <Route path="*" element={<NotFoundPage/>} />
-            </Routes>
-        </BrowserRouter>
+        <Routes>
+            <Route path="/" element={<HomePage/>} />
+            <Route path="/cart" element={<CartPage/>} />
+            {/* not found request */}
+            <Route path="*" element={<NotFoundPage/>} />
+        </Routes>
     )
 }
 export default React.memo(RouteApp);

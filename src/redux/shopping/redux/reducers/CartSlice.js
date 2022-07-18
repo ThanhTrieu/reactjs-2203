@@ -13,6 +13,27 @@ const cartSlice = createSlice({
         startAddProductCart(state, action){
             state.loadingCart = action.payload;
         },
+        changeQuantity(state, action){
+            const { id, quantity } = action.payload || { id: 0, quantity: 0 };
+            // cap nhat lai so luong mua cua san pham co id gui len
+            const quantityItems = state.dataCarts.map(item => {
+                return item.id === id ? {...item, qty: quantity} : item;
+            });
+            if(quantityItems !== undefined){
+                state.dataCarts = quantityItems;
+                state.errorCart = null;
+            }
+        },
+        removeItemCart(state, action){
+            const idItem = action.payload || 0;
+            // xoa bo san pham co id gui len trong gio hang
+            // giu lai cac san pham ko trung id gui len
+            const removeItems = state.dataCarts.filter(item => item.id !== idItem);
+            if(removeItems !== undefined){
+                state.dataCarts = removeItems;
+                state.errorCart = null;
+            }
+        },
         addProductCartSuccess(state, action){
             const infoPd = action.payload; // thong tin chi tiet san pham
             const idPd = infoPd['id'] || 0; // id cua san pham

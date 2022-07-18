@@ -16,3 +16,13 @@ export const countDataCart = createSelector(
     getAllDataFromCarts,
     items => items.length
 )
+
+export const getTotalMoneyCart = createSelector(
+    getAllDataFromCarts,
+    data => data.length > 0 ? data.map(item => parseFloat(item.price)*parseFloat(item.qty)).reduce((prev,next) => prev + next) : 0
+);
+
+export const getStateErrorCart = createSelector(
+    cartState,
+    state => state.errorCart
+)

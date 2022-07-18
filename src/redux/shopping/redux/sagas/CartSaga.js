@@ -1,4 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
+import { push } from '@lagunovsky/redux-react-router';
 import { actionCart } from '../reducers/CartSlice';
 import { ADD_PRODUCT_TO_CART } from './ActionSaga';
 import { ApiServices } from '../services/ApiService';
@@ -10,6 +11,8 @@ function* cartSaga({ id }){
         if(detailPd !== null && !detailPd.hasOwnProperty('status')){
             // co data tra ve
             yield put(actionCart.addProductCartSuccess(detailPd));
+            // chuyen trang ve page cart
+            yield put(push('/cart'));
         } else {
             // khong co data tra ve
             yield put(actionCart.addProductCartFailure({
