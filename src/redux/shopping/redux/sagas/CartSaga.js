@@ -4,13 +4,13 @@ import { actionCart } from '../reducers/CartSlice';
 import { ADD_PRODUCT_TO_CART } from './ActionSaga';
 import { ApiServices } from '../services/ApiService';
 
-function* cartSaga({ id }){
+function* cartSaga({ id, qty }){
     try {
         yield put(actionCart.startAddProductCart(true));
         const detailPd = yield call(ApiServices.getDetailProductById, id);
         if(detailPd !== null && !detailPd.hasOwnProperty('status')){
             // co data tra ve
-            yield put(actionCart.addProductCartSuccess(detailPd));
+            yield put(actionCart.addProductCartSuccess({data: detailPd, qty: qty}));
             // chuyen trang ve page cart
             yield put(push('/cart'));
         } else {

@@ -6,6 +6,8 @@ import * as selectorCart from '../../redux/selectors/CartSelector';
 import { createStructuredSelector } from 'reselect';
 import LayoutComponent from '../../components/Layout';
 import { Row, Col, Skeleton, Card, Button } from 'antd';
+import { Link } from "react-router-dom";
+import slugify from 'react-slugify';
 
 const { Meta } = Card;
 
@@ -22,7 +24,7 @@ const HomePage = () => {
     }, [dispatch]);
 
     const addCart = id => {
-        dispatch(addProductToCart(id));
+        dispatch(addProductToCart(id, 1));
     }
 
     if(loading){
@@ -45,24 +47,24 @@ const HomePage = () => {
             <Row>
                 {products.map((item,index) => (
                     <Col span={6} key={index}>
-                        <Card
-                            hoverable
-                            bordered={false}
-                            style={{
-                                width: 240,
-                            }}
-                            cover={<img alt={item.title} src={item.image} />}
-                        >
-                            <Meta title={item.title}/>
-                            <div>
+                        <Link to={`/${slugify(item.title)}-${item.id}`}>
+                            <Card
+                                hoverable
+                                bordered={false}
+                                style={{
+                                    width: 240,
+                                }}
+                                cover={<img alt={item.title} src={item.image} />}
+                            >
+                                <Meta title={item.title}/>
                                 <p>Price: {item.price}</p>
-                                <Button
-                                    type="primary"
-                                    disabled={loadingCart}
-                                    onClick={()=> addCart(item.id) }
-                                > Add Cart</Button>
-                            </div>
-                        </Card>
+                            </Card>
+                        </Link>
+                        <Button
+                            type="primary"
+                            disabled={loadingCart}
+                            onClick={()=> addCart(item.id) }
+                        > Add Cart</Button>
                     </Col>
                 ))}
             </Row>
